@@ -3,10 +3,10 @@ import logo from '../../assets/myfavicon.png';
 
 const Header = (props) => {
   return (
-    <header>
+    <header className="headerComponent" data-test="headerComponent">
       <div className="wrap">
         <div className="logo">
-          <img src={logo} alt="Logo" />
+          <img data-test="logoIMG" src={logo} alt="Logo" />
         </div>
       </div>
     </header>
