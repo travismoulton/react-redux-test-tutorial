@@ -18,19 +18,28 @@ describe('<Button />', () => {
 
   describe('Renders', () => {
     let wrapper;
-
-    const props = {
-      buttonText: 'Example button text',
-      emitEvent: () => {},
-    };
+    let mockFunction;
 
     beforeEach(() => {
+      mockFunction = jest.fn();
+      const props = {
+        buttonText: 'Example button text',
+        emitEvent: mockFunction,
+      };
+
       wrapper = shallow(<Button {...props} />);
     });
 
     test('Should render a button', () => {
       const button = findByTestAtrr(wrapper, 'buttonComponent');
       expect(button.length).toBe(1);
+    });
+
+    test('should emit callback on click event', () => {
+      const button = findByTestAtrr(wrapper, 'buttonComponent');
+      button.simulate('click');
+      const callback = mockFunction.mock.calls.length;
+      expect(callback).toBe(1);
     });
   });
 });
